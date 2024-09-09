@@ -61,10 +61,10 @@ html, body {
     padding-bottom: 10px;
 }
 
-.unread {
+button[read="false"] {
     background-color: red;
 }
 
-.read {
+button[read="true"] {
     background-color: rgb(60, 228, 60);
-}
+}   

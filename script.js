@@ -59,14 +59,18 @@ function addBookToLibrary(book)
 
     if (book.read)
     {
-        readButton.className = "read";
+        readButton.setAttribute("read", "true")
         readButton.innerText = "Read";
     }
     else
     {
-        readButton.className = "unread";
+        readButton.setAttribute("read", "false")
         readButton.innerText = "Unread";
     }
+
+    readButton.addEventListener('click', (event) => {
+        toggleReadStatus(book);
+    });
 
     removeButton.addEventListener('click', (event) => {
         deleteBook(book);
@@ -84,8 +88,27 @@ function deleteBook(bookToDelete)
     const bookList = document.getElementsByClassName("book-card");
     bookList[index].parentNode.removeChild(bookList[index]);
     myLibrary.splice(index, 1);
-    for(let i = index; i < myLibrary.length; i++)
+    for (let i = index; i < myLibrary.length; i++)
     {
         bookList[i].setAttribute("position", String(Number(bookList[i].getAttribute("position")) - 1));
     }
 }
+
+function toggleReadStatus(bookToToggle)
+{
+    if (bookToToggle.getAttribute("read") == "true")
+        bookToToggle.setAttribute("read", "false");
+    else if(bookToToggle.getAttribute("read") == "false")
+        bookToToggle.setAttribute("read", "true");
+        
+}
+
+let tempBook = new Book("Title", "Person", 123, true);
+let tempBook2 = new Book("Temp2", "Person", 123, false);
+let tempBook3 = new Book("Temp3", "Person", 123, true);
+let tempBook4 = new Book("Temp4", "Person", 123, true);
+
+addBookToLibrary(tempBook);
+addBookToLibrary(tempBook2);
+addBookToLibrary(tempBook3);
+addBookToLibrary(tempBook4);
