@@ -69,20 +69,18 @@ function addBookToLibrary(book)
     }
 
     removeButton.addEventListener('click', (event) => {
-        console.log("clicked");
-        
-        deleteBook(book.title);
+        deleteBook(book);
     });
 
     newBook.append(titleDisplay, authorDisplay, pagesDisplay, readButton, removeButton);
     bookGrid.append(newBook);
 }
 
-function deleteBook(bookTitle)
+function deleteBook(bookToDelete)
 {
     // Delete the book-card with the title and then adjust the position
     // attribute of the following books
-    const index = myLibrary.indexOf(myLibrary.find(({title}) => title === bookTitle));
+    const index = myLibrary.indexOf(bookToDelete);
     const bookList = document.getElementsByClassName("book-card");
     bookList[index].parentNode.removeChild(bookList[index]);
     myLibrary.splice(index, 1);
