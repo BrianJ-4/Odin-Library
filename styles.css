@@ -1,0 +1,26 @@
+#main-container {
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+}
+
+#book-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.unread {
+    background-color: red;
+}
+
+.read {
+    background-color: green;
+}
