@@ -1,9 +1,26 @@
 const myLibrary = [];
 const displayedBooks = [];
 
-const addBookButton = document.getElementById("addBookButton");
+const addBookDialog = document.getElementById("add-book-dialog");
+
+const openAddDialogButton = document.getElementById("open-add-dialog-button");
+openAddDialogButton.addEventListener('click', (event) => {
+    addBookDialog.showModal();
+});
+
+const closeDialogButton = document.getElementById("close-dialog-button");
+closeDialogButton.addEventListener('click', (event) => {
+    addBookDialog.close();
+});
+
+const addBookButton = document.getElementById("add-book-button");
 addBookButton.addEventListener('click', (event) => {
-    addBookToLibrary(bookOne);
+    event.preventDefault();
+    const form = document.getElementById("book-form");
+    const book = new Book(form.elements["book-title"].value, form.elements["book-author"].value, form.elements["book-pages"].value, form.elements["book-read"].checked);
+    addBookDialog.close();
+    addBookToLibrary(book);
+    form.reset();
 });
 
 const bookGrid = document.getElementById("book-grid");
@@ -29,11 +46,11 @@ function addBookToLibrary(book)
     const readButton = document.createElement("button");
     const removeButton = document.createElement("button");
 
-    titleDisplay.id = "title";
-    authorDisplay.id = "author";
-    pagesDisplay.id = "pages";
-    readButton.id = "read-button";
-    removeButton.id = "remove-button"
+    titleDisplay.className = "title";
+    authorDisplay.className = "author";
+    pagesDisplay.className = "pages";
+    readButton.className = "read-button";
+    removeButton.className = "remove-button";
 
     titleDisplay.innerText = book.title;
     authorDisplay.innerText = book.author;
@@ -52,8 +69,5 @@ function addBookToLibrary(book)
     }
 
     newBook.append(titleDisplay, authorDisplay, pagesDisplay, readButton, removeButton);
-
     bookGrid.append(newBook);
 }
-
-let bookOne = new Book("Test Book", "John Doe", 234, true);
