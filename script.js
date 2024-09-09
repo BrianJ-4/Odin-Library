@@ -44,18 +44,17 @@ function addBookToLibrary(book)
     const authorDisplay = document.createElement("div");
     const pagesDisplay = document.createElement("div");
     const readButton = document.createElement("button");
-    const removeButton = document.createElement("button");
+    const removeButton = document.createElement("i");
 
     titleDisplay.className = "title";
     authorDisplay.className = "author";
     pagesDisplay.className = "pages";
-    readButton.className = "read-button";
-    removeButton.className = "remove-button";
+    removeButton.className = "material-icons";
 
     titleDisplay.innerText = book.title;
     authorDisplay.innerText = book.author;
     pagesDisplay.innerText = book.pages + " Pages";
-    removeButton.innerText = "Remove";
+    removeButton.innerText = "delete";
 
     if (book.read)
     {
