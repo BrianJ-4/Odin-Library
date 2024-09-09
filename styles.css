@@ -1,9 +1,29 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+
 #main-container {
     display: grid;
     grid-template-rows: 1fr 9fr;
+    font-family: Roboto;
+}
+
+#content {
+    background-color: rgb(225, 225, 225);
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 2px -2px lightgrey;
 }
 
 #book-grid {
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 50px;
@@ -14,7 +34,31 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
+    background-color: white;
+    border-radius: 10px;
+    font-weight: 600;
+}
 
+.title {
+    margin-top: 20px;
+}
+
+.remove-button {
+    margin-bottom: 20px;
+}
+
+.book-card button {
+    border: none;
+    border-radius: 5px;
+    width: calc(100% - 100px);
+    height: 50px;
+}
+
+.book-card i {
+    align-self: flex-end;
+    padding-right: 20px;
+    padding-bottom: 10px;
 }
 
 .unread {
@@ -22,5 +66,5 @@
 }
 
 .read {
-    background-color: green;
+    background-color: rgb(60, 228, 60);
 }
