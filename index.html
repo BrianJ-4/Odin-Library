@@ -13,17 +13,21 @@
             <h1>My Library</h1>
         </div>
         <div id="content">
-            <button id="addBookButton">Add Book</button>
-            <div id="book-grid">
-                <div class="book-card">
-                    <div id="title">Book Name</div>
-                    <div id="author">Author</div>
-                    <div id="pages">Pages</div>
-                    <button id="read-button">Read</button>
-                    <button id="remove-button">Remove</button>
-                </div>
-            </div>
+            <button id="open-add-dialog-button">Add Book</button>
+            <div id="book-grid"></div>
         </div>
+        <dialog id="add-book-dialog">
+            <div id="dialogContents">
+                <form id="book-form">
+                    <input type="text" name="book-title" placeholder="Title" required>
+                    <input type="text" name="book-author" placeholder="Author" required>
+                    <input type="number" name="book-pages" placeholder="Pages" required>
+                    <input type="checkbox" name="book-read">
+                    <button id="add-book-button">Add</button>
+                </form>
+                <button id="close-dialog-button">Close</button>
+            </div>
+        </dialog>
     </div>
 </body>
 </html>
