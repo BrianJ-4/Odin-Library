@@ -39,6 +39,7 @@ function addBookToLibrary(book)
     
     const newBook = document.createElement("div");
     newBook.className = "book-card";
+    newBook.setAttribute("position", String(myLibrary.length - 1));
 
     const titleDisplay = document.createElement("div");
     const authorDisplay = document.createElement("div");
@@ -67,6 +68,26 @@ function addBookToLibrary(book)
         readButton.innerText = "Unread";
     }
 
+    removeButton.addEventListener('click', (event) => {
+        console.log("clicked");
+        
+        deleteBook(book.title);
+    });
+
     newBook.append(titleDisplay, authorDisplay, pagesDisplay, readButton, removeButton);
     bookGrid.append(newBook);
+}
+
+function deleteBook(bookTitle)
+{
+    // Delete the book-card with the title and then adjust the position
+    // attribute of the following books
+    const index = myLibrary.indexOf(myLibrary.find(({title}) => title === bookTitle));
+    const bookList = document.getElementsByClassName("book-card");
+    bookList[index].parentNode.removeChild(bookList[index]);
+    myLibrary.splice(index, 1);
+    for(let i = index; i < myLibrary.length; i++)
+    {
+        bookList[i].setAttribute("position", String(Number(bookList[i].getAttribute("position")) - 1));
+    }
 }
