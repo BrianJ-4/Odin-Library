@@ -1,31 +1,4 @@
-const myLibrary = [];
-const displayedBooks = [];
-
-const addBookDialog = document.getElementById("add-book-dialog");
-
-const openAddDialogButton = document.getElementById("open-add-dialog-button");
-openAddDialogButton.addEventListener('click', (event) => {
-    addBookDialog.showModal();
-});
-
-const closeDialogButton = document.getElementById("close-dialog-button");
-closeDialogButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    addBookDialog.close();
-});
-
-const addBookButton = document.getElementById("add-book-button");
-addBookButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    const form = document.getElementById("book-form");
-    const book = new Book(form.elements["book-title"].value, form.elements["book-author"].value, form.elements["book-pages"].value, form.elements["book-read"].checked);
-    addBookDialog.close();
-    addBookToLibrary(book);
-    form.reset();
-});
-
-const bookGrid = document.getElementById("book-grid");
-
+// Book Object
 function Book(title, author, pages, read)
 {
     this.title = title;
@@ -34,13 +7,69 @@ function Book(title, author, pages, read)
     this.read = read;  
 }
 
+// Array to hold Book objects
+const myLibrary = [];
+
+const addBookDialog = document.getElementById("add-book-dialog");
+const openAddDialogButton = document.getElementById("open-add-dialog-button");
+const closeDialogButton = document.getElementById("close-dialog-button");
+const form = document.getElementById("book-form");
+const addBookButton = document.getElementById("add-book-button");
+const bookGrid = document.getElementById("book-grid");
+
+// Open Add Book Dialog
+openAddDialogButton.addEventListener('click', openAddBookDialog);
+function openAddBookDialog() 
+{
+    addBookDialog.showModal();
+}
+
+// Close Add Book Dialog
+closeDialogButton.addEventListener('click', closeAddBookDialog);
+function closeAddBookDialog(event)
+{
+    event.preventDefault();
+    addBookDialog.close();
+    form.reset();
+}
+
+// Add a New Book
+addBookButton.addEventListener('click', handleAddBook);
+function handleAddBook(event) 
+{
+    event.preventDefault();
+    // Since we are preventing the default behavior, we will need to manually
+    // invoke the validity check
+    if(form.checkValidity())
+    {
+        const book = new Book(
+            form.elements["book-title"].value,
+            form.elements["book-author"].value, 
+            form.elements["book-pages"].value, 
+            form.elements["book-read"].checked
+        );
+        addBookDialog.close();
+        addBookToLibrary(book);
+        form.reset();
+    }
+    else
+    {
+        form.reportValidity();
+    }
+}
+
 function addBookToLibrary(book)
 {
     myLibrary.push(book);
-    
-    const newBook = document.createElement("div");
-    newBook.className = "book-card";
-    newBook.setAttribute("position", String(myLibrary.length - 1));
+    const newBookCard = createBookCard(book);
+    bookGrid.append(newBookCard);
+}
+
+function createBookCard(book) 
+{
+    const bookCard = document.createElement("div");
+    bookCard.className = "book-card";
+    bookCard.setAttribute("position", String(myLibrary.length - 1));
 
     const titleDisplay = document.createElement("div");
     const authorDisplay = document.createElement("div");
@@ -69,16 +98,16 @@ function addBookToLibrary(book)
         readButton.innerText = "Unread";
     }
 
-    readButton.addEventListener('click', (event) => {
+    readButton.addEventListener('click', () => {
         toggleReadStatus(book);
     });
 
-    removeButton.addEventListener('click', (event) => {
+    removeButton.addEventListener('click', () => {
         deleteBook(book);
     });
 
-    newBook.append(titleDisplay, authorDisplay, pagesDisplay, readButton, removeButton);
-    bookGrid.append(newBook);
+    bookCard.append(titleDisplay, authorDisplay, pagesDisplay, readButton, removeButton);
+    return bookCard;
 }
 
 function deleteBook(bookToDelete)
@@ -107,7 +136,7 @@ function toggleReadStatus(bookToToggle)
         readButton.setAttribute("read", "true");
         readButton.innerText = "Read";
     }
-    else if(!bookToToggle.read)
+    else
     {
         readButton.setAttribute("read", "false");
         readButton.innerText = "Unread";
