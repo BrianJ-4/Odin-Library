@@ -96,11 +96,21 @@ function deleteBook(bookToDelete)
 
 function toggleReadStatus(bookToToggle)
 {
-    if (bookToToggle.getAttribute("read") == "true")
-        bookToToggle.setAttribute("read", "false");
-    else if(bookToToggle.getAttribute("read") == "false")
-        bookToToggle.setAttribute("read", "true");
-        
+    bookToToggle.read = !bookToToggle.read;
+    
+    const index = myLibrary.indexOf(myLibrary.find(({title}) => title === bookToToggle.title));
+    const readButton = document.querySelector(`div[position="${index}"] button`);
+
+    if (bookToToggle.read)
+    {              
+        readButton.setAttribute("read", "true");
+        readButton.innerText = "Read";
+    }
+    else if(!bookToToggle.read)
+    {
+        readButton.setAttribute("read", "false");
+        readButton.innerText = "Unread";
+    }        
 }
 
 let tempBook = new Book("Title", "Person", 123, true);
