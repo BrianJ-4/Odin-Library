@@ -21,15 +21,19 @@
             <div id="book-grid"></div>
         </div>
         <dialog id="add-book-dialog">
-            <div id="dialogContents">
+            <div id="dialog-contents">
                 <form id="book-form">
+                    <h2>Add Book</h2>
                     <input type="text" name="book-title" placeholder="Title" required>
                     <input type="text" name="book-author" placeholder="Author" required>
                     <input type="number" name="book-pages" placeholder="Pages" required>
-                    <input type="checkbox" name="book-read">
+                    <div class="read">
+                        <label for="book-read">Read?</label>
+                        <input type="checkbox" name="book-read">
+                    </div>
                     <button id="add-book-button">Add</button>
+                    <i id="close-dialog-button" class="material-icons">cancel</i>
                 </form>
-                <button id="close-dialog-button">Close</button>
             </div>
         </dialog>
     </div>

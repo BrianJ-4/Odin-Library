@@ -7,6 +7,7 @@ html, body {
     display: grid;
     grid-template-rows: 1fr 9fr;
     font-family: Roboto;
+    height: 100%;
 }
 
 #content {
@@ -80,11 +81,11 @@ button[read="false"]:hover {
     background-color: rgba(254, 109, 109, 1);
 }
 
-button[read="true"] {
+button[read="true"], #add-book-button {
     background-color: rgba(115, 247, 115, 0.80);
 }
 
-button[read="true"]:hover {
+button[read="true"]:hover, #add-book-button:hover {
     background-color: rgba(115, 247, 115, 1);
 }
 
@@ -99,4 +100,69 @@ button[read="true"]:hover {
 button {
     font-weight: 600;
     cursor: pointer;
+}
+
+dialog {
+    border: none;
+    border-radius: 10px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+#add-book-dialog {
+    background-color: rgb(232, 232, 232);;
+    width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+input[type="text"], input[type="number"] {
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    width: calc(100% - 25px);
+    padding-left: 10px;
+    font-size: larger;
+}
+
+label {
+    font-size: 20px;
+}
+
+.read {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="checkbox"] {
+    border: none;
+    width: 20px;
+    height: 20px;
+}
+
+#add-book-button {
+    border: none;
+    border-radius: 10px;
+    width: calc(100% - 25px);
+    height: 50px;
+    font-size: 20px;
+}
+
+#close-dialog-button {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+#close-dialog-button:hover {
+    cursor: pointer;
+    opacity: 0.50;
 }

@@ -10,6 +10,7 @@ openAddDialogButton.addEventListener('click', (event) => {
 
 const closeDialogButton = document.getElementById("close-dialog-button");
 closeDialogButton.addEventListener('click', (event) => {
+    event.preventDefault();
     addBookDialog.close();
 });
 
@@ -112,13 +113,3 @@ function toggleReadStatus(bookToToggle)
         readButton.innerText = "Unread";
     }        
 }
-
-let tempBook = new Book("Title", "Person", 123, true);
-let tempBook2 = new Book("Temp2", "Person", 123, false);
-let tempBook3 = new Book("Temp3", "Person", 123, true);
-let tempBook4 = new Book("Temp4", "Person", 123, true);
-
-addBookToLibrary(tempBook);
-addBookToLibrary(tempBook2);
-addBookToLibrary(tempBook3);
-addBookToLibrary(tempBook4);
