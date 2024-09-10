@@ -10,23 +10,28 @@ html, body {
 }
 
 #content {
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(232, 232, 232);
+    display: flex;
+    flex-direction: column;
 }
 
 #header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 2px -2px lightgrey;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.146);
+    z-index: 1;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 #book-grid {
     padding-top: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 35px;
+    padding-right: 35px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 35px;
 }
 
 .book-card {
@@ -50,7 +55,7 @@ html, body {
 
 .book-card button {
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     width: calc(100% - 100px);
     height: 50px;
 }
@@ -59,12 +64,39 @@ html, body {
     align-self: flex-end;
     padding-right: 20px;
     padding-bottom: 10px;
+    color: black;
+}
+
+.book-card i:hover {
+    opacity: 0.50;
+    cursor: pointer;
 }
 
 button[read="false"] {
-    background-color: red;
+    background-color: rgba(254, 109, 109, 0.8);
+}
+
+button[read="false"]:hover {
+    background-color: rgba(254, 109, 109, 1);
 }
 
 button[read="true"] {
-    background-color: rgb(60, 228, 60);
-}   
+    background-color: rgba(115, 247, 115, 0.80);
+}
+
+button[read="true"]:hover {
+    background-color: rgba(115, 247, 115, 1);
+}
+
+#open-add-dialog-button {
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    background-color: rgb(232, 232, 232);
+}
+
+button {
+    font-weight: 600;
+    cursor: pointer;
+}
