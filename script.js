@@ -106,6 +106,12 @@ function createBookCard(book)
         deleteBook(book);
     });
 
+    titleDisplay.style.overflowWrap = "break-word";
+    titleDisplay.style.textAlign = "center";
+
+    authorDisplay.style.overflowWrap = "break-word";
+    authorDisplay.style.textAlign = "center";
+
     bookCard.append(titleDisplay, authorDisplay, pagesDisplay, readButton, removeButton);
     return bookCard;
 }
